@@ -1,0 +1,16 @@
+//test document for ExDL
+
+![HTML]
+html {
+    head {
+        title "Test document"
+    }
+    body {
+        h1 "Test document"
+        p "test"
+        br; // no closing tag, doesn't use <tag /> syntax
+        "test 2"
+        !p // no closing tag, uses <tag /> syntax
+        script(src="whatever")
+    }
+}
