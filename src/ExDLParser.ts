@@ -18,7 +18,10 @@ export enum SelfCloseType {
 export function parse(exdl: string): string {
     var doc = parseRoot(exdl)
     var out = ""
-    console.log(parseTag(doc.content))
+    if (doc.compat) {
+        out += "<!DOCTYPE "+doc.compat!+">\n"
+    }
+    out += parseTag(doc.content)
     return out
 }
 function parseTag(tags: (ExdlTag|string)[], indent: number = 0): string {
