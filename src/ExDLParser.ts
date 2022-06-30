@@ -16,7 +16,7 @@ export enum SelfCloseType {
 }
 
 export function parse(exdl: string): string {
-    var doc = parseRoot(exdl)
+    var doc = parseToDoc(exdl)
     var out = ""
     if (doc.compat) {
         out += "<!DOCTYPE "+doc.compat!+">\n"
@@ -24,6 +24,7 @@ export function parse(exdl: string): string {
     out += parseTag(doc.content)
     return out
 }
+
 function parseTag(tags: (ExdlTag|string)[], indent: number = 0): string {
     var out = ""
     for (let tag of tags) {
@@ -42,7 +43,7 @@ function parseTag(tags: (ExdlTag|string)[], indent: number = 0): string {
     return out
 }
 
-function parseRoot(exdl: string): ExdlDoc {
+export function parseToDoc(exdl: string): ExdlDoc {
     exdl = exdl.trim()
     while (exdl.startsWith("//")) {
         exdl = exdl.substring(exdl.indexOf("\n"))
